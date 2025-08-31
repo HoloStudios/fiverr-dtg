@@ -40,8 +40,8 @@ class _SharePageState extends State<SharePage> {
                     // QR code
                     Container(
                       color: theme.colorScheme.primary,
-                      height: 300,
-                      width: 250,
+                      height: MediaQuery.of(context).size.height * 0.06 + MediaQuery.of(context).size.width * 0.57,
+                      width: MediaQuery.of(context).size.width * 0.57,
                       
                       child: Column(
                         children: <Widget>[
@@ -49,7 +49,7 @@ class _SharePageState extends State<SharePage> {
                             alignment: Alignment.center,
                             
                             child: SizedBox(
-                              width: 250,
+                              width: MediaQuery.of(context).size.width * 0.57,
 
                               child: Container(
                                 width: double.infinity,
@@ -84,7 +84,7 @@ class _SharePageState extends State<SharePage> {
                               // Apple button
                               Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: MediaQuery.of(context).size.height * 0.06,
                                   color: isLeftSelected ? theme.colorScheme.primary: theme.colorScheme.inversePrimary,
 
                                   child: TextButton(
@@ -93,7 +93,7 @@ class _SharePageState extends State<SharePage> {
                                         isLeftSelected = true;
                                       });
                                     },
-                                    child: Text(
+                                    child: AutoSizeText(
                                       "Website",
                                       style: TextStyle(fontFamily: 'Playfair', fontSize: 16, color: theme.colorScheme.secondary)
                                     ),
@@ -104,14 +104,14 @@ class _SharePageState extends State<SharePage> {
                               // Divider
                               Container(
                                 width: 1,
-                                height: 50,
+                                height: MediaQuery.of(context).size.height * 0.06,
                                 color: Colors.white24,
                               ),
 
                               // Google play button
                               Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: MediaQuery.of(context).size.height * 0.06,
                                   color: !isLeftSelected ? theme.colorScheme.primary: theme.colorScheme.inversePrimary,
                                   child: TextButton(
                                     onPressed: () {
@@ -119,7 +119,7 @@ class _SharePageState extends State<SharePage> {
                                         isLeftSelected = false;
                                       });
                                     },
-                                    child: Text(
+                                    child: AutoSizeText(
                                       "Google Play",
                                       style: TextStyle(fontFamily: 'Playfair', fontSize: 16, color: theme.colorScheme.secondary),
                                     ),
@@ -135,20 +135,32 @@ class _SharePageState extends State<SharePage> {
                     Spacer(),
 
                     // Descriptive text
-                    Container(
-                      height: 70,
-                      color: theme.colorScheme.primary,
-
-                      child: Center(child: 
-                        Text(
-                          'PLEASE SCAN THE QR CODE TO DOWNLOAD THE APP',
-
-                          maxLines: null,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontFamily: 'Playfair', fontSize: 19, color: theme.colorScheme.secondary)
-                        )
-                      ),
-                    ),
+                        Container(
+                          color: theme.colorScheme.primary,
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              return FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(maxWidth: constraints.maxWidth),
+                                  child: AutoSizeText(
+                                    'PLEASE SCAN THE QR CODE TO DOWNLOAD THE APP',
+                                    textAlign: TextAlign.center,
+                                    softWrap: true,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontFamily: 'Playfair',
+                                      fontSize: MediaQuery.of(context).size.height * 0.02,
+                                      color: theme.colorScheme.secondary,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                   ],
                 ),
               ),
@@ -157,7 +169,7 @@ class _SharePageState extends State<SharePage> {
             // Bottom quote
             Container(
               height: MediaQuery.of(context).size.height * 0.13,
-              margin: EdgeInsets.all(16),
+              margin: EdgeInsets.only(left: 16, right: 16, top: MediaQuery.of(context).size.height * 0.01, bottom: 16),
               width: double.infinity,
               
               color: theme.colorScheme.primaryContainer,
