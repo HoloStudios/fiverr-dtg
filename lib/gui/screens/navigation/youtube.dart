@@ -5,6 +5,7 @@ import 'package:discover_the_gospel/gui/components/header.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:discover_the_gospel/util/responsivetext.dart';
 
 class YoutubePage extends StatefulWidget {
   const YoutubePage({super.key});
@@ -31,21 +32,21 @@ class YoutubeButton extends StatelessWidget {
       padding: EdgeInsets.only(top: 4),
 
       child: SizedBox(
-        width: double.infinity, // full-width button, remove if not needed
+        width: double.infinity,
         child: ElevatedButton(
           onPressed: _launchUrl,
           style: ElevatedButton.styleFrom(
             backgroundColor: theme.colorScheme.primary,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero, // Makes it fully rectangular
+              borderRadius: BorderRadius.zero,
             ),
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.017, horizontal: 8),
           ),
           child: Text(
             'Open in YouTube',
             style: TextStyle(
               fontFamily: 'Playfair',
-              fontSize: 19,
+              fontSize: MediaQuery.of(context).size.height * 0.02,
               color: theme.colorScheme.secondary,
             ),
           ),
@@ -110,7 +111,6 @@ class _YoutubePageState extends State<YoutubePage> {
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.only(top: 16, left: 16, right: 16),
-
                     child: Column(
                       children: <Widget>[
                         // Youtube video
@@ -198,7 +198,7 @@ class _YoutubePageState extends State<YoutubePage> {
                                 fit: BoxFit.scaleDown,
                                 child: ConstrainedBox(
                                   constraints: BoxConstraints(maxWidth: constraints.maxWidth),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     'PLEASE CLICK ON THE IMAGE ABOVE TO WATCH THE YOUTUBE VIDEO',
                                     textAlign: TextAlign.center,
                                     softWrap: true,
@@ -206,7 +206,7 @@ class _YoutubePageState extends State<YoutubePage> {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontFamily: 'Playfair',
-                                      fontSize: 19,
+                                      fontSize: MediaQuery.of(context).size.height * 0.02,
                                       color: theme.colorScheme.secondary,
                                     ),
                                   ),
@@ -223,7 +223,7 @@ class _YoutubePageState extends State<YoutubePage> {
                 // Bottom quote
                 Container(
                   height: MediaQuery.of(context).size.height * 0.13,
-                  margin: EdgeInsets.all(16),
+                  margin: EdgeInsets.only(left: 16, right: 16, top: MediaQuery.of(context).size.height * 0.01, bottom: 16),
                   width: double.infinity,
                   
                   color: theme.colorScheme.primaryContainer,

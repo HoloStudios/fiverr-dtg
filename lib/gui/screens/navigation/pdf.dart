@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:discover_the_gospel/gui/components/header.dart';
 import 'package:discover_the_gospel/gui/screens/fullscreenpdf.dart';
@@ -60,7 +61,7 @@ class PDFPage extends StatelessWidget {
             // Descriptive Text
             Container(
               margin: EdgeInsets.all(16),
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               color: theme.colorScheme.primary,
               child: LayoutBuilder(
                 builder: (context, constraints) {
@@ -68,15 +69,15 @@ class PDFPage extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     child: ConstrainedBox(
                       constraints: BoxConstraints(maxWidth: constraints.maxWidth),
-                      child: Text(
+                      child: AutoSizeText(
                         'CLICK ON THE E-BOOKLET TO READ',
                         textAlign: TextAlign.center,
                         softWrap: true,
-                        maxLines: 2,
+                        maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontFamily: 'Playfair',
-                          fontSize: Responsivetext.getSize(context, 19),
+                          fontSize: MediaQuery.of(context).size.height * 0.02,
                           color: theme.colorScheme.secondary,
                         ),
                       ),
