@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:discover_the_gospel/gui/components/header.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class SharePage extends StatefulWidget {
   const SharePage({super.key});
@@ -155,7 +156,7 @@ class _SharePageState extends State<SharePage> {
 
             // Bottom quote
             Container(
-              height: 130,
+              height: MediaQuery.of(context).size.height * 0.13,
               margin: EdgeInsets.all(16),
               width: double.infinity,
               
@@ -185,7 +186,7 @@ class _SharePageState extends State<SharePage> {
                               child: Text(
                                 'Mark 1:3',
                                 textAlign: TextAlign.right,
-                                style: TextStyle(fontFamily: 'Caudex', fontSize: 19, color: theme.colorScheme.secondary)
+                                style: TextStyle(fontFamily: 'Caudex', fontSize: 14, color: theme.colorScheme.secondary)
                               ),
                             ),
                           ],
@@ -201,36 +202,44 @@ class _SharePageState extends State<SharePage> {
 
                         child: Padding(
                           padding: EdgeInsets.only(top: 4, bottom: 4, right: 4, left: 4),
-                          child: Stack(
-                            children: [
-                              // Outline (stroke)
-                              Text(
-                                '"Prepare the way for the Lord, make straight paths for Him."',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Caudex',
-                                  fontSize: 19,
-                                  letterSpacing: 6,
-                                  height: 1.2,
-                                  foreground: Paint()
-                                    ..style = PaintingStyle.stroke
-                                    ..strokeWidth = 3
-                                    ..color = theme.colorScheme.primary, // Outline color
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+
+                            child: Stack(
+                              children: [
+                                // Outline (stroke)
+                                AutoSizeText(
+                                  '"Prepare the way for the Lord, make straight paths for Him."',
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
+                                  maxLines: 3,
+                                  style: TextStyle(
+                                    fontFamily: 'Caudex',
+                                    fontSize: 19,
+                                    letterSpacing: 5,
+                                    height: 1.2,
+                                    foreground: Paint()
+                                      ..style = PaintingStyle.stroke
+                                      ..strokeWidth = 3
+                                      ..color = theme.colorScheme.primary, // Outline color
+                                  ),
                                 ),
-                              ),
-                              // Fill (main text)
-                              Text(
-                                '"Prepare the way for the Lord, make straight paths for Him."',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Caudex',
-                                  fontSize: 19,
-                                  height: 1.2,
-                                  letterSpacing: 6,
-                                  color: theme.colorScheme.secondary, // Fill color
+                                // Fill (main text)
+                                AutoSizeText(
+                                  '"Prepare the way for the Lord, make straight paths for Him."',
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
+                                  maxLines: 3,
+                                  style: TextStyle(
+                                    fontFamily: 'Caudex',
+                                    fontSize: 19,
+                                    height: 1.2,
+                                    letterSpacing: 5,
+                                    color: theme.colorScheme.secondary, // Fill color
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

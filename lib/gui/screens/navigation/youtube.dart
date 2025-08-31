@@ -4,6 +4,7 @@ import 'package:discover_the_gospel/sharedstate.dart';
 import 'package:discover_the_gospel/gui/components/header.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class YoutubePage extends StatefulWidget {
   const YoutubePage({super.key});
@@ -221,7 +222,7 @@ class _YoutubePageState extends State<YoutubePage> {
 
                 // Bottom quote
                 Container(
-                  height: 130,
+                  height: MediaQuery.of(context).size.height * 0.13,
                   margin: EdgeInsets.all(16),
                   width: double.infinity,
                   
@@ -251,7 +252,7 @@ class _YoutubePageState extends State<YoutubePage> {
                                   child: Text(
                                     'Mark 1:3',
                                     textAlign: TextAlign.right,
-                                    style: TextStyle(fontFamily: 'Caudex', fontSize: 19, color: theme.colorScheme.secondary)
+                                    style: TextStyle(fontFamily: 'Caudex', fontSize: 14, color: theme.colorScheme.secondary)
                                   ),
                                 ),
                               ],
@@ -273,14 +274,15 @@ class _YoutubePageState extends State<YoutubePage> {
                                 child: Stack(
                                   children: [
                                     // Outline (stroke)
-                                    Text(
+                                    AutoSizeText(
                                       '"Prepare the way for the Lord, make straight paths for Him."',
                                       textAlign: TextAlign.center,
                                       softWrap: true,
+                                      maxLines: 3,
                                       style: TextStyle(
                                         fontFamily: 'Caudex',
                                         fontSize: 19,
-                                        letterSpacing: 6,
+                                        letterSpacing: 5,
                                         height: 1.2,
                                         foreground: Paint()
                                           ..style = PaintingStyle.stroke
@@ -289,15 +291,16 @@ class _YoutubePageState extends State<YoutubePage> {
                                       ),
                                     ),
                                     // Fill (main text)
-                                    Text(
+                                    AutoSizeText(
                                       '"Prepare the way for the Lord, make straight paths for Him."',
                                       textAlign: TextAlign.center,
                                       softWrap: true,
+                                      maxLines: 3,
                                       style: TextStyle(
                                         fontFamily: 'Caudex',
                                         fontSize: 19,
                                         height: 1.2,
-                                        letterSpacing: 6,
+                                        letterSpacing: 5,
                                         color: theme.colorScheme.secondary, // Fill color
                                       ),
                                     ),
